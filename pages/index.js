@@ -158,9 +158,9 @@ export default function Home() {
         }
         
         .upload-button:hover {
-          background: linear-gradient(to right, #1d4ed8, #6d28d9) !important;
-          transform: translateY(-2px);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+          background: #111111 !important;
+          transform: translateY(-1px);
+          box-shadow: none;
         }
         
         .upload-area {
@@ -168,13 +168,13 @@ export default function Home() {
         }
         
         .upload-area:hover {
-          border-color: #60a5fa;
-          background-color: rgba(239, 246, 255, 0.5);
+          border-color: #1b1b1b;
+          background-color: rgba(255, 255, 255, 0.42);
         }
         
         .upload-area.drag-over {
-          border-color: #2563eb;
-          background-color: rgba(219, 234, 254, 0.5);
+          border-color: #1b1b1b;
+          background-color: rgba(255, 255, 255, 0.62);
         }
 
         .tab-button {
@@ -182,11 +182,11 @@ export default function Home() {
         }
 
         .tab-button:hover {
-          background-color: rgba(37, 99, 235, 0.1);
+          background-color: rgba(27, 27, 27, 0.06);
         }
 
         .tab-button.active {
-          background-color: rgba(37, 99, 235, 0.1);
+          background-color: rgba(27, 27, 27, 0.06);
         }
 
         @keyframes pulse {
@@ -218,10 +218,12 @@ export default function Home() {
       
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #e8eaf6 100%)',
+        background: '#f3f0eb',
         padding: isMobile ? '12px 8px' : '16px',
         position: 'relative',
-        overflowX: 'hidden'
+        overflowX: 'hidden',
+        color: '#111111',
+        fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
       }}>
         
         <div style={{
@@ -236,8 +238,8 @@ export default function Home() {
           {/* Header */}
           <div style={{
             textAlign: 'center',
-            marginBottom: '48px',
-            paddingTop: '32px',
+            marginBottom: '52px',
+            paddingTop: isMobile ? '36px' : '80px',
             position: 'relative'
           }}>
             {/* Info Button */}
@@ -249,8 +251,8 @@ export default function Home() {
                 position: 'absolute',
                 top: isMobile ? '0' : '10px',
                 right: isMobile ? '0' : '10px',
-                backgroundColor: 'rgba(219, 234, 254, 0.8)',
-                border: 'none',
+                backgroundColor: 'transparent',
+                border: '1px solid #d8d2c8',
                 borderRadius: '50%',
                 width: isMobile ? '36px' : '42px',
                 height: isMobile ? '36px' : '42px',
@@ -258,34 +260,31 @@ export default function Home() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
                 transition: 'all 0.2s ease',
                 zIndex: 10
               }}
               onMouseOver={(e) => {
-                e.target.style.backgroundColor = 'rgba(191, 219, 254, 0.9)';
-                e.target.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.backgroundColor = '#e9e4dc';
               }}
               onMouseOut={(e) => {
-                e.target.style.backgroundColor = 'rgba(219, 234, 254, 0.8)';
-                e.target.style.transform = 'translateY(0)';
+                e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
-              <HelpCircle size={isMobile ? 20 : 24} color="#2563eb" />
+              <HelpCircle size={isMobile ? 18 : 20} color="#1b1b1b" />
             </button>
             
             <h1 style={{
-              fontSize: isMobile ? '36px' : '48px',
-              fontWeight: 'bold',
-              background: 'linear-gradient(to right, #2563eb, #7c3aed)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              margin: '0 0 16px 0',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
+              fontSize: isMobile ? '44px' : '64px',
+              fontWeight: '400',
+              color: '#070707',
+              margin: '0 0 18px 0',
+              fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              lineHeight: 0.98,
+              letterSpacing: '-0.035em',
+              flexWrap: 'wrap'
             }}>
               <div className="logo-container" style={{ display: 'inline-flex' }}>
                 <img 
@@ -293,20 +292,27 @@ export default function Home() {
                   alt="CareerLaunch AI Logo" 
                   className="transparent-logo"
                   style={{
-                    height: isMobile ? '60px' : '80px',
+                    height: isMobile ? '52px' : '72px',
                     width: 'auto',
                     verticalAlign: 'middle'
                   }}
                 />
               </div>
-              CareerLaunch AI
+              <span>CareerLaunch&nbsp;</span>
+              <span style={{
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontStyle: 'italic',
+                color: '#5f5a52',
+                fontWeight: 400
+              }}>AI</span>
             </h1>
             <p style={{
-              color: '#6b7280',
-              fontSize: '18px',
-              maxWidth: '600px',
+              color: '#4d4a45',
+              fontSize: isMobile ? '18px' : '22px',
+              maxWidth: '720px',
               margin: '0 auto',
-              lineHeight: '1.6'
+              lineHeight: '1.45',
+              fontWeight: 400
             }}>
               Upload your resume to get AI-powered feedback, personalized cover letters tailored to the job, and mock interview questions to help you practice and stand out.
             </p>
@@ -318,11 +324,10 @@ export default function Home() {
               className={`upload-area ${isDragOver ? 'drag-over' : ''}`}
               style={{
                 position: 'relative',
-                border: '2px dashed #d1d5db',
-                borderRadius: '16px',
-                padding: '32px',
-                backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                backdropFilter: 'blur(10px)',
+                border: '1px solid #d8d2c8',
+                borderRadius: '0',
+                padding: isMobile ? '28px 22px' : '42px',
+                backgroundColor: 'rgba(255, 255, 255, 0.24)',
                 opacity: uploadLoading ? 0.7 : 1,
                 pointerEvents: uploadLoading ? 'none' : 'auto'
               }}
@@ -343,7 +348,7 @@ export default function Home() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                  borderRadius: '16px',
+                  borderRadius: '0',
                   zIndex: 10
                 }}>
                   <div style={{
@@ -362,14 +367,14 @@ export default function Home() {
                     <div>
                       <h3 style={{
                         fontSize: '18px',
-                        fontWeight: '600',
-                        color: '#2563eb',
+                        fontWeight: '400',
+                        color: '#111111',
                         margin: '0 0 4px 0'
                       }}>
                         Processing Your Resume
                       </h3>
                       <p style={{
-                        color: '#6b7280',
+                        color: '#5f5a52',
                         margin: '0',
                         fontSize: '14px'
                       }}>
@@ -380,14 +385,14 @@ export default function Home() {
                   <div className="loading-overlay" style={{
                     width: '200px',
                     height: '4px',
-                    backgroundColor: '#e5e7eb',
+                    backgroundColor: '#ddd8cf',
                     borderRadius: '2px',
                     overflow: 'hidden'
                   }}>
                     <div style={{
                       width: '100%',
                       height: '100%',
-                      background: 'linear-gradient(to right, #2563eb, #7c3aed)',
+                      background: '#1b1b1b',
                       borderRadius: '2px',
                       animation: 'pulse 1.5s ease-in-out infinite'
                     }}></div>
@@ -402,23 +407,23 @@ export default function Home() {
                   marginBottom: '16px'
                 }}>
                   <div style={{
-                    padding: '16px',
-                    background: 'linear-gradient(to right, #dbeafe, #e9d5ff)',
+                    padding: '14px',
+                    background: '#ebe6dd',
                     borderRadius: '50%'
                   }}>
-                    <Upload size={48} color="#2563eb" />
+                    <Upload size={42} color="#1b1b1b" />
                   </div>
                 </div>
                 <h3 style={{
-                  fontSize: '20px',
-                  fontWeight: '600',
-                  color: '#1f2937',
+                  fontSize: isMobile ? '22px' : '28px',
+                  fontWeight: '400',
+                  color: '#111111',
                   marginBottom: '8px'
                 }}>
                   Upload Your Resume
                 </h3>
                 <p style={{
-                  color: '#6b7280',
+                  color: '#5f5a52',
                   marginBottom: '24px',
                   fontSize: '16px'
                 }}>
@@ -429,15 +434,17 @@ export default function Home() {
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '12px',
+                    gap: '16px',
                     cursor: uploadLoading ? 'not-allowed' : 'pointer',
-                    background: 'linear-gradient(to right, #2563eb, #7c3aed)',
+                    background: '#1b1b1b',
                     color: 'white',
-                    padding: '16px 32px',
-                    borderRadius: '12px',
-                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                    fontWeight: '600',
-                    fontSize: '16px',
+                    padding: '15px 22px',
+                    borderRadius: '5px',
+                    boxShadow: 'none',
+                    fontWeight: '800',
+                    fontSize: '11px',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
                     border: 'none',
                     transition: 'all 0.2s ease',
                     opacity: uploadLoading ? 0.6 : 1
@@ -445,6 +452,7 @@ export default function Home() {
                 >
                   <Upload size={20} />
                   Choose PDF File
+                  <span style={{ fontSize: '22px', lineHeight: 0 }}>→</span>
                   <input
                     type="file"
                     accept="application/pdf"
@@ -464,12 +472,12 @@ export default function Home() {
                 className="tab-container"
                 style={{
                   display: 'flex',
-                  borderBottom: '1px solid #e5e7eb',
+                  borderBottom: '1px solid #d8d2c8',
                   marginBottom: '24px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                  borderRadius: '12px 12px 0 0',
-                  padding: isMobile ? '8px' : '12px',
-                  gap: isMobile ? '4px' : '8px',
+                  backgroundColor: 'transparent',
+                  borderRadius: 0,
+                  padding: 0,
+                  gap: 0,
                   overflowX: isMobile ? 'auto' : 'visible',
                   scrollbarWidth: 'none',
                   msOverflowStyle: 'none'
@@ -479,18 +487,20 @@ export default function Home() {
                   className={`tab-button ${activeTab === "resume-critique" ? 'active' : ''}`}
                   onClick={() => setActiveTab("resume-critique")}
                   style={{
-                    padding: isMobile ? '10px 12px' : '12px 20px',
-                    fontWeight: activeTab === "resume-critique" ? '600' : '500',
-                    color: activeTab === "resume-critique" ? '#2563eb' : '#6b7280',
-                    borderBottom: activeTab === "resume-critique" ? '2px solid #2563eb' : '2px solid transparent',
+                    padding: isMobile ? '14px 16px' : '16px 24px',
+                    fontWeight: '800',
+                    color: activeTab === "resume-critique" ? '#111111' : '#5f5a52',
+                    borderBottom: activeTab === "resume-critique" ? '1px solid #111111' : '1px solid transparent',
                     background: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     gap: isMobile ? '6px' : '8px',
-                    fontSize: isMobile ? '14px' : '16px',
-                    borderRadius: '8px',
+                    fontSize: '11px',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    borderRadius: '0',
                     flexShrink: 0,
                     whiteSpace: 'nowrap',
                     minWidth: 'fit-content'
@@ -503,18 +513,20 @@ export default function Home() {
                   className={`tab-button ${activeTab === "cover-letter" ? 'active' : ''}`}
                   onClick={() => setActiveTab("cover-letter")}
                   style={{
-                    padding: isMobile ? '10px 12px' : '12px 20px',
-                    fontWeight: activeTab === "cover-letter" ? '600' : '500',
-                    color: activeTab === "cover-letter" ? '#2563eb' : '#6b7280',
-                    borderBottom: activeTab === "cover-letter" ? '2px solid #2563eb' : '2px solid transparent',
+                    padding: isMobile ? '14px 16px' : '16px 24px',
+                    fontWeight: '800',
+                    color: activeTab === "cover-letter" ? '#111111' : '#5f5a52',
+                    borderBottom: activeTab === "cover-letter" ? '1px solid #111111' : '1px solid transparent',
                     background: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     gap: isMobile ? '6px' : '8px',
-                    fontSize: isMobile ? '14px' : '16px',
-                    borderRadius: '8px',
+                    fontSize: '11px',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    borderRadius: '0',
                     flexShrink: 0,
                     whiteSpace: 'nowrap',
                     minWidth: 'fit-content'
@@ -527,18 +539,20 @@ export default function Home() {
                   className={`tab-button ${activeTab === "mock-interview" ? 'active' : ''}`}
                   onClick={() => setActiveTab("mock-interview")}
                   style={{
-                    padding: isMobile ? '10px 12px' : '12px 20px',
-                    fontWeight: activeTab === "mock-interview" ? '600' : '500',
-                    color: activeTab === "mock-interview" ? '#2563eb' : '#6b7280',
-                    borderBottom: activeTab === "mock-interview" ? '2px solid #2563eb' : '2px solid transparent',
+                    padding: isMobile ? '14px 16px' : '16px 24px',
+                    fontWeight: '800',
+                    color: activeTab === "mock-interview" ? '#111111' : '#5f5a52',
+                    borderBottom: activeTab === "mock-interview" ? '1px solid #111111' : '1px solid transparent',
                     background: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     gap: isMobile ? '6px' : '8px',
-                    fontSize: isMobile ? '14px' : '16px',
-                    borderRadius: '8px',
+                    fontSize: '11px',
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    borderRadius: '0',
                     flexShrink: 0,
                     whiteSpace: 'nowrap',
                     minWidth: 'fit-content'
@@ -596,13 +610,11 @@ export default function Home() {
           <section style={{
             marginTop: '40px',
             padding: isMobile ? '12px 8px' : '24px 16px',
-            borderTop: '1px solid #e5e7eb',
+            borderTop: '1px solid #d8d2c8',
             textAlign: 'center',
-            background: isMobile ? 'rgba(240, 249, 255, 0.7)' : 'linear-gradient(135deg, #f0f9ff, #e0f2fe, #dbeafe, #e0f2fe)',
-            backgroundSize: '400% 400%',
-            animation: isMobile ? 'none' : 'subtleShift 15s ease infinite',
-            borderRadius: '8px',
-            boxShadow: isMobile ? '0 2px 4px rgba(0, 0, 0, 0.03)' : '0 4px 6px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)',
+            background: 'transparent',
+            borderRadius: '0',
+            boxShadow: 'none',
             position: 'relative',
             overflow: 'hidden',
             width: '100%',
@@ -613,8 +625,8 @@ export default function Home() {
               top: 0,
               left: 0,
               right: 0,
-              height: '4px',
-              background: 'linear-gradient(to right, #2563eb, #7c3aed)'
+              height: '1px',
+              background: '#d8d2c8'
             }}></div>
             <div style={{
               position: 'absolute',
@@ -622,7 +634,7 @@ export default function Home() {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundImage: 'radial-gradient(#2563eb 1px, transparent 1px)',
+              backgroundImage: 'none',
               backgroundSize: '20px 20px',
               opacity: 0.05,
               pointerEvents: 'none'
@@ -636,14 +648,14 @@ export default function Home() {
               {isMobile ? (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
                   <span style={{ fontSize: '13px', color: '#64748b' }}>Made by</span>
-                  <span style={{ fontSize: '13px', fontWeight: '600', color: '#334155' }}>Joner De Silva</span>
+                  <span style={{ fontSize: '13px', fontWeight: '600', color: '#111111' }}>Joner De Silva</span>
                 </div>
               ) : (
                 <>
                   <h2 style={{
                     fontSize: '18px',
                     fontWeight: '600',
-                    color: '#2563eb',
+                    color: '#111111',
                     margin: '0 0 4px 0',
                     letterSpacing: '0.5px'
                   }}>Made By</h2>
@@ -686,7 +698,7 @@ export default function Home() {
                   color: 'white',
                   fontWeight: '500',
                   fontSize: isMobile ? '12px' : '16px',
-                  backgroundColor: '#0077b5',
+                  backgroundColor: '#1b1b1b',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   boxShadow: isMobile ? '0 1px 2px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
                   width: 'auto',
@@ -732,12 +744,12 @@ export default function Home() {
                   alignItems: 'center',
                   gap: isMobile ? '4px' : '6px',
                   padding: isMobile ? '6px 10px' : '8px 16px',
-                  borderRadius: isMobile ? '4px' : '6px',
+                  borderRadius: '5px',
                   textDecoration: 'none',
                   color: 'white',
                   fontWeight: '500',
                   fontSize: isMobile ? '12px' : '16px',
-                  backgroundColor: '#24292e',
+                  backgroundColor: '#1b1b1b',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   boxShadow: isMobile ? '0 1px 2px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
                   width: 'auto',
@@ -760,12 +772,12 @@ export default function Home() {
                   alignItems: 'center',
                   gap: isMobile ? '4px' : '6px',
                   padding: isMobile ? '6px 10px' : '8px 16px',
-                  borderRadius: isMobile ? '4px' : '6px',
+                  borderRadius: '5px',
                   textDecoration: 'none',
                   color: 'white',
                   fontWeight: '500',
                   fontSize: isMobile ? '12px' : '16px',
-                  backgroundColor: '#4f46e5',
+                  backgroundColor: '#1b1b1b',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   boxShadow: isMobile ? '0 1px 2px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
                   width: 'auto',
@@ -794,7 +806,7 @@ export default function Home() {
               flexWrap: 'wrap'
             }}>
               <span>Powered by</span>
-              <span style={{ fontWeight: '600', color: '#2563eb' }}>Groq llama-3.1-8b-instant</span>
+              <span style={{ fontWeight: '600', color: '#111111' }}>Groq llama-3.1-8b-instant</span>
             </div>
             <div style={{ 
               marginBottom: isMobile ? '4px' : '8px', 
