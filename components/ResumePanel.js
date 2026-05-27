@@ -38,12 +38,12 @@ export default function ResumePanel({
 
   return (
     <div style={{
-      backgroundColor: 'white',
-      borderRadius: '16px',
-      boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+      backgroundColor: 'rgba(255, 255, 255, 0.26)',
+      borderRadius: '0',
+      boxShadow: 'none',
       padding: isMobile ? '16px' : '24px',
       marginBottom: '24px',
-      border: '1px solid rgba(226, 232, 240, 0.8)',
+      border: '1px solid #d8d2c8',
       width: '100%',
       boxSizing: 'border-box'
     }}>
@@ -52,34 +52,34 @@ export default function ResumePanel({
         alignItems: 'center',
         gap: '12px',
         marginBottom: '16px',
-        borderBottom: '1px solid #f1f5f9',
+        borderBottom: '1px solid #d8d2c8',
         paddingBottom: '16px',
         flexDirection: isMobile ? 'column' : 'row',
         textAlign: isMobile ? 'center' : 'left'
       }}>
         <div style={{
-          backgroundColor: '#ebf5ff',
-          borderRadius: '12px',
+          backgroundColor: '#ebe6dd',
+          borderRadius: '50%',
           padding: '10px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           marginBottom: isMobile ? '8px' : '0'
         }}>
-          <FileText size={24} color="#3b82f6" />
+          <FileText size={22} color="#1b1b1b" />
         </div>
         <div>
           <h2 style={{
             fontSize: isMobile ? '16px' : '18px',
-            fontWeight: '600',
-            color: '#1e293b',
+            fontWeight: '400',
+            color: '#111111',
             margin: 0
           }}>
             Resume Editor
           </h2>
           <p style={{
             fontSize: isMobile ? '13px' : '14px',
-            color: '#64748b',
+            color: '#5f5a52',
             margin: 0
           }}>
             Review and edit your resume text before analysis
@@ -98,13 +98,13 @@ export default function ResumePanel({
           <label style={{ 
             fontSize: isMobile ? '13px' : '14px', 
             fontWeight: '500', 
-            color: '#475569' 
+            color: '#4d4a45' 
           }}>
             Resume Content
           </label>
           <span style={{ 
             fontSize: '12px', 
-            color: '#94a3b8',
+            color: '#6e6a63',
             textAlign: isMobile ? 'left' : 'right'
           }}>
             {resumeText.length} characters
@@ -118,9 +118,9 @@ export default function ResumePanel({
             minHeight: isMobile ? '180px' : '240px',
             maxHeight: isMobile ? '300px' : '400px',
             padding: isMobile ? '12px' : '16px',
-            borderRadius: '8px',
-            border: '1px solid #e2e8f0',
-            backgroundColor: '#f8fafc',
+            borderRadius: '0',
+            border: '1px solid #d8d2c8',
+            backgroundColor: 'rgba(255, 255, 255, 0.42)',
             fontSize: isMobile ? '14px' : '15px',
             lineHeight: '1.6',
             fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -133,11 +133,11 @@ export default function ResumePanel({
             appearance: 'none'
           }}
           onFocus={(e) => {
-            e.target.style.borderColor = '#93c5fd';
-            e.target.style.boxShadow = '0 0 0 3px rgba(147, 197, 253, 0.25)';
+            e.target.style.borderColor = '#1b1b1b';
+            e.target.style.boxShadow = 'none';
           }}
           onBlur={(e) => {
-            e.target.style.borderColor = '#e2e8f0';
+            e.target.style.borderColor = '#d8d2c8';
             e.target.style.boxShadow = 'none';
           }}
           placeholder="Your resume text appears here. Feel free to make any edits before analysis."
@@ -157,18 +157,19 @@ export default function ResumePanel({
             gap: '8px',
             backgroundColor: resumeText.length < 100 ? '#fff1f2' : '#f0fdf4',
             padding: '8px 12px',
-            borderRadius: '6px',
+            borderRadius: '0',
+            border: '1px solid #d8d2c8',
             marginBottom: isMobile ? '12px' : '16px',
             justifyContent: isMobile ? 'center' : 'flex-start'
           }}>
             {resumeText.length < 100 ? (
-              <AlertTriangle size={16} color="#e11d48" />
+              <AlertTriangle size={16} color="#8b1e1e" />
             ) : (
-              <CheckCircle size={16} color="#16a34a" />
+              <CheckCircle size={16} color="#1b1b1b" />
             )}
             <span style={{ 
               fontSize: isMobile ? '12px' : '13px', 
-              color: resumeText.length < 100 ? '#e11d48' : '#16a34a'
+              color: resumeText.length < 100 ? '#8b1e1e' : '#1b1b1b'
             }}>
               {resumeText.length < 100 
                 ? 'Resume text is too short for effective analysis' 
@@ -184,28 +185,28 @@ export default function ResumePanel({
             alignItems: 'center',
             justifyContent: 'center',
             gap: '8px',
-            backgroundColor: loading || resumeText.length < 100 ? '#94a3b8' : '#3b82f6',
-            backgroundImage: loading || resumeText.length < 100 ? 'none' : 'linear-gradient(to right, #3b82f6, #2563eb)',
+            backgroundColor: loading || resumeText.length < 100 ? '#9a948b' : '#1b1b1b',
+            backgroundImage: 'none',
             color: 'white',
-            fontWeight: '600',
-            padding: isMobile ? '10px 16px' : '12px 24px',
-            borderRadius: '8px',
+            fontWeight: '800',
+            padding: isMobile ? '12px 16px' : '15px 22px',
+            borderRadius: '5px',
             border: 'none',
             cursor: loading || resumeText.length < 100 ? 'not-allowed' : 'pointer',
             transition: 'transform 0.2s, box-shadow 0.2s',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            boxShadow: 'none',
             width: isMobile ? '100%' : 'auto',
-            fontSize: isMobile ? '14px' : '16px'
+            fontSize: '11px',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase'
           }}
           onMouseOver={(e) => {
             if (!loading && resumeText.length >= 100) {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
             }
           }}
           onMouseOut={(e) => {
-            e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+            e.currentTarget.style.transform = 'translateY(0)';
           }}
         >
           {loading ? (
@@ -233,11 +234,11 @@ export default function ResumePanel({
       {feedback && (
         <div style={{ 
           marginTop: '32px',
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+          backgroundColor: 'rgba(255, 255, 255, 0.26)',
+          borderRadius: '0',
+          boxShadow: 'none',
           padding: isMobile ? '16px' : '24px',
-          border: '1px solid rgba(226, 232, 240, 0.8)'
+          border: '1px solid #d8d2c8'
         }} ref={feedbackRef}>
           <div style={{
             display: 'flex',
@@ -248,28 +249,28 @@ export default function ResumePanel({
             textAlign: isMobile ? 'center' : 'left'
           }}>
             <div style={{
-              backgroundColor: '#ecfdf5',
-              borderRadius: '12px',
+              backgroundColor: '#ebe6dd',
+              borderRadius: '50%',
               padding: '10px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: isMobile ? '8px' : '0'
             }}>
-              <Sparkles size={24} color="#059669" />
+              <Sparkles size={22} color="#1b1b1b" />
             </div>
             <div>
               <h2 style={{
                 fontSize: isMobile ? '16px' : '18px',
-                fontWeight: '600',
-                color: '#1e293b',
+                fontWeight: '400',
+                color: '#111111',
                 margin: 0
               }}>
                 AI Feedback & Analysis
               </h2>
               <p style={{
                 fontSize: isMobile ? '13px' : '14px',
-                color: '#64748b',
+                color: '#5f5a52',
                 margin: 0
               }}>
                 Expert recommendations to improve your resume
@@ -289,18 +290,117 @@ export default function ResumePanel({
             }}
             className="feedback-container"
           />
+          <style>{`
+            .feedback-container {
+              color: #1b1b1b;
+            }
+
+            .feedback-section-modern {
+              display: grid;
+              grid-template-columns: 48px minmax(0, 1fr);
+              border-top: 1px solid #d8d2c8;
+              min-height: 118px;
+            }
+
+            .feedback-section-modern:last-child {
+              border-bottom: 1px solid #d8d2c8;
+            }
+
+            .feedback-section-number {
+              color: #183b5b;
+              font-size: 11px;
+              letter-spacing: 0.18em;
+              font-weight: 800;
+              padding-top: 28px;
+              font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            }
+
+            .feedback-section-body {
+              border-left: 1px solid #d8d2c8;
+              padding: 24px 0 24px 32px;
+            }
+
+            .feedback-section-body h3 {
+              color: #111111;
+              font-size: clamp(20px, 3vw, 28px);
+              line-height: 1.15;
+              font-weight: 400;
+              letter-spacing: -0.03em;
+              margin: 0 0 18px;
+            }
+
+            .feedback-section-body p {
+              color: #4d4a45;
+              font-size: clamp(14px, 2vw, 16px);
+              line-height: 1.75;
+              margin: 0 0 14px;
+            }
+
+            .feedback-section-body strong {
+              color: #111111;
+              font-weight: 650;
+            }
+
+            .feedback-section-body em {
+              font-family: Georgia, "Times New Roman", serif;
+              color: #5f5a52;
+            }
+
+            .feedback-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .feedback-list li {
+              position: relative;
+              color: #4d4a45;
+              font-size: clamp(14px, 2vw, 16px);
+              line-height: 1.7;
+              padding: 0 0 16px 22px;
+              margin: 0 0 16px;
+              border-bottom: 1px solid rgba(216, 210, 200, 0.7);
+            }
+
+            .feedback-list li:last-child {
+              margin-bottom: 0;
+              border-bottom: none;
+            }
+
+            .feedback-list li::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0.72em;
+              width: 5px;
+              height: 5px;
+              background: #1b1b1b;
+              border-radius: 50%;
+            }
+
+            @media (max-width: 768px) {
+              .feedback-section-modern {
+                grid-template-columns: 34px minmax(0, 1fr);
+              }
+
+              .feedback-section-body {
+                padding-left: 18px;
+              }
+            }
+          `}</style>
             
             {/* Re-analyze button */}
             <div style={{
               marginTop: '24px',
               padding: '16px',
-              backgroundColor: 'rgba(236, 253, 245, 0.4)',
-              borderRadius: '8px',
+              backgroundColor: 'rgba(255, 255, 255, 0.28)',
+              borderRadius: '0',
+              border: '1px solid #d8d2c8',
               textAlign: 'center'
             }}>
               <p style={{
                 fontSize: isMobile ? '13px' : '14px',
-                color: '#047857',
+                color: '#4d4a45',
                 textAlign: 'center',
                 margin: '0 0 12px 0',
                 fontWeight: '500'
@@ -320,29 +420,29 @@ export default function ResumePanel({
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '8px',
-                  backgroundColor: loading ? '#94a3b8' : '#059669',
+                  backgroundColor: loading ? '#9a948b' : '#1b1b1b',
                   color: 'white',
-                  fontWeight: '600',
-                  padding: isMobile ? '10px 16px' : '12px 24px',
-                  borderRadius: '8px',
+                  fontWeight: '800',
+                  padding: isMobile ? '12px 16px' : '15px 22px',
+                  borderRadius: '5px',
                   border: 'none',
                   cursor: loading ? 'not-allowed' : 'pointer',
                   transition: 'all 0.2s ease',
-                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-                  fontSize: isMobile ? '14px' : '16px'
+                  boxShadow: 'none',
+                  fontSize: '11px',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase'
                 }}
                 onMouseOver={(e) => {
                   if (!loading) {
-                    e.target.style.backgroundColor = '#047857';
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+                    e.currentTarget.style.backgroundColor = '#111111';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
                   }
                 }}
                 onMouseOut={(e) => {
                   if (!loading) {
-                    e.target.style.backgroundColor = '#059669';
-                    e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+                    e.currentTarget.style.backgroundColor = '#1b1b1b';
+                    e.currentTarget.style.transform = 'translateY(0)';
                   }
                 }}
               >
