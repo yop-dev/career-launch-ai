@@ -794,7 +794,7 @@ export default function Home() {
               flexWrap: 'wrap'
             }}>
               <span>Powered by</span>
-              <span style={{ fontWeight: '600', color: '#2563eb' }}>Groq llama3-8b-8192</span>
+              <span style={{ fontWeight: '600', color: '#2563eb' }}>Groq llama-3.1-8b-instant</span>
             </div>
             <div style={{ 
               marginBottom: isMobile ? '4px' : '8px', 

@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { formatResumeFeedback } from "./formatResumeFeedback";
+import { GROQ_MODEL } from "../../lib/groq";
 
 // Initialize the OpenAI client with Groq's base URL
 const client = new OpenAI({
@@ -91,7 +92,7 @@ Please provide a thorough, professional analysis that will genuinely help this c
   try {
     // Using Groq API with LLaMA-3-8B model
     const response = await client.chat.completions.create({
-      model: "llama3-8b-8192",
+      model: GROQ_MODEL,
       messages: [
         {
           role: "system",

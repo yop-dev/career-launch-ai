@@ -182,4 +182,4 @@ MIT
 
 ---
 
-**Powered by [Groq](https://groq.com/) and [LLaMA-3-8B](https://groq.com/models/llama3-8b-8192).**
+**Powered by [Groq](https://groq.com/) and Llama 3.1 8B Instant.**

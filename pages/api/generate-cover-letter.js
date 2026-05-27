@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { GROQ_MODEL } from "../../lib/groq";
 
 // Initialize the OpenAI client with Groq's base URL
 const client = new OpenAI({
@@ -71,7 +72,7 @@ Remember: Provide ONLY the cover letter content with no explanatory text before 
   try {
     // Using Groq API with LLaMA-3-8B model
     const response = await client.chat.completions.create({
-      model: "llama3-8b-8192",
+      model: GROQ_MODEL,
       messages: [
         {
           role: "system",
