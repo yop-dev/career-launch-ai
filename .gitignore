@@ -61,3 +61,4 @@ desktop.ini
 # Misc
 .vercel
 .env.example
+.worktrees/
