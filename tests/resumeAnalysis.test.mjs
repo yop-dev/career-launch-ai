@@ -85,4 +85,14 @@ describe("resumeAnalysis helpers", () => {
     assert.equal(isGroqRateLimitError({ message: "429 Too Many Requests" }), true);
     assert.equal(isGroqRateLimitError({ message: "network failed" }), false);
   });
+
+  it("keeps the visual analysis instructions in the vision prompt", () => {
+    const messages = buildResumeAnalysisMessages({
+      resumeText: "Jane Doe\nSoftware Engineer",
+      resumeImages: [tinyJpeg],
+    });
+
+    assert.match(messages[1].content[0].text, /Use the attached PDF page images/);
+    assert.match(messages[1].content[0].text, /Do not invent visual formatting issues/);
+  });
 });
