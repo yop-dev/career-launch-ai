@@ -5,8 +5,13 @@ import ResumePanel from "../components/ResumePanel";
 import CoverLetterGenerator from "../components/CoverLetterGenerator";
 import MockInterviewGenerator from "../components/MockInterviewGenerator";
 
+const MAX_VISUAL_RESUME_PAGES = 2;
+const PDF_RENDER_SCALE = 1.4;
+const PDF_IMAGE_QUALITY = 0.72;
+
 export default function Home() {
   const [resumeText, setResumeText] = useState("");
+  const [resumeImages, setResumeImages] = useState([]);
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploadLoading, setUploadLoading] = useState(false); // New state for upload loading
@@ -37,6 +42,43 @@ export default function Home() {
   }, []);
   const [activeTab, setActiveTab] = useState("resume-critique"); // "resume-critique", "cover-letter", or "mock-interview"
 
+  const renderResumeImages = async (file) => {
+    if (typeof window === "undefined") return [];
+
+    const pdfjsLib = await import("pdfjs-dist/build/pdf.mjs");
+    const pdfWorker = await import("pdfjs-dist/build/pdf.worker.mjs");
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker.default;
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDocument = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    const pageCount = Math.min(pdfDocument.numPages, MAX_VISUAL_RESUME_PAGES);
+    const images = [];
+
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      const page = await pdfDocument.getPage(pageNumber);
+      const viewport = page.getViewport({ scale: PDF_RENDER_SCALE });
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+
+      if (!context) {
+        throw new Error("Unable to create PDF rendering context.");
+      }
+
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+
+      await page.render({
+        canvasContext: context,
+        viewport,
+      }).promise;
+
+      images.push(canvas.toDataURL("image/jpeg", PDF_IMAGE_QUALITY));
+    }
+
+    return images;
+  };
+
   const handleFileUpload = async (file) => {
     if (!file || file.type !== "application/pdf") {
       alert("Please upload a PDF file.");
@@ -44,6 +86,7 @@ export default function Home() {
     }
 
     setUploadLoading(true); // Start upload loading
+    setResumeImages([]);
 
     const reader = new FileReader();
     reader.onloadend = async () => {
@@ -57,6 +100,14 @@ export default function Home() {
         if (!res.ok) throw new Error("Failed to extract text from PDF.");
         const data = await res.json();
         setResumeText(data.text);
+
+        try {
+          const images = await renderResumeImages(file);
+          setResumeImages(images);
+        } catch (renderError) {
+          console.error("Failed to render resume PDF pages:", renderError);
+          setResumeImages([]);
+        }
 
         // Auto-scroll to the analyze button on mobile devices after a short delay
         setTimeout(() => {
@@ -111,9 +162,12 @@ export default function Home() {
       const res = await fetch("/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ resumeText }),
+        body: JSON.stringify({ resumeText, resumeImages }),
       });
-      if (!res.ok) throw new Error("Failed to analyze resume.");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || "Failed to analyze resume.");
+      }
       const data = await res.json();
       setFeedback(data.feedback);
     } catch (err) {
